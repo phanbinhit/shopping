@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head") %>
+</head>
+<body>
+    <header>
+        <%- include("../partials/header") %>
+    </header>
+    <main>
+        <section id="cart" class="py-3">
+            <div class="container-fluid w-75">
+                <h5 class="font-baloo font-size-20">Shopping Cart</h5>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="row border-top py-3 mt-3">
+                            <div class="col-sm-2">
+                                <img src="/images/bikini/1.jpg" alt="Samsung1" class="img-fluid" style="height: 120px">
+                            </div>
+                            <div class="col-sm-8">
+                                <h5 class="font-baloo font-size-20">Bikini new Summer</h5>
+                                <small>by Victoria Secret</small>
+                                <div class="d-flex">
+                                    <div class="rating text-warning font-size-14">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="font-size-14 font-rale px-2" style="color: #007bff">20,534 ratings</a>
+                                </div>
+                                <div class="d-flex q-ty pt-2">
+                                    <div class="d-flex font-rale w-50">
+                                        <button class="qty-up btn bg-light border" data-id="pro-1">
+                                            <i class="fa fa-angle-up"></i>
+                                        </button>
+                                        <input data-id="pro-1" type="text" class="qty-input bg-light px-2 border w-100" disabled value="1" placeholder="1">
+                                        <button data-id="pro-1" class="qty-down btn bg-light border">
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn text-danger" type="submit">
+                                        Delete
+                                    </button>
+                                    <button class="btn text-danger border-left rounded-0" type="submit">
+                                        Save for Later
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <div class=" text-danger font-baloo font-size-20">$<span class="product-price">152</span></div>
+                            </div>
+                        </div>
+                        <div class="row border-top py-3 mt-3">
+                            <div class="col-sm-2">
+                                <img src="/images/bikini/2.jpg" alt="Samsung1" class="img-fluid" style="height: 120px">
+                            </div>
+                            <div class="col-sm-8">
+                                <h5 class="font-baloo font-size-20">Bikini for Spring</h5>
+                                <small>by Victoria Secret</small>
+                                <div class="d-flex">
+                                    <div class="rating text-warning font-size-14">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="font-size-14 font-rale px-2" style="color: #007bff">20,534 ratings</a>
+                                </div>
+                                <div class="d-flex q-ty pt-2">
+                                    <div class="d-flex font-rale w-50">
+                                        <button class="qty-up btn bg-light border" data-id="pro-2">
+                                            <i class="fa fa-angle-up"></i>
+                                        </button>
+                                        <input type="text" data-id="pro-2" class="qty-input bg-light px-2 border w-100" disabled value="1" placeholder="1">
+                                        <button data-id="pro-2" class="qty-down btn bg-light border">
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn text-danger" type="submit">
+                                        Delete
+                                    </button>
+                                    <button class="btn text-danger border-left rounded-0" type="submit">
+                                        Save for Later
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <div class=" text-danger font-baloo font-size-20">$<span class="product-price">152</span></div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="border text-center py-3">
+                            <h6 class="font-size-12 font-rale text-success">
+                                <i class="fa fa-check"></i>
+                                Your order is eligible for FREE Delivery
+                            </h6>
+                            <div class="border-top py-4">
+                                <div>
+                                    <h5 class="font-baloo font-size-20">
+                                        Subtotal(2 item): <span id="price" class=" text-danger">$152</span>
+                                    </h5>
+                                </div>
+                                <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="bg-dark text-white py-5">
+        <%- include("../partials/footer") %>
+    </footer>
+    <%- include("../partials/script") %>
+    <script>
+        $(document).ready(function() {
+            let $qtyUp = $(".qty-up");
+            let $qtyDown = $(".qty-down");
+
+            $qtyUp.click(function(e) {
+                let $qtyInput = $('.qty-input[data-id='+ ($(this).data("id")) + ']');
+                if($qtyInput.val() > 0 && $qtyInput.val() <=9) {
+                    $qtyInput.val(function(i, oldVal) {
+                        return ++oldVal;
+                    });
+                }
+            });
+
+            $qtyDown.click(function(e) {
+                let $qtyInput = $('.qty-input[data-id='+ ($(this).data("id")) + ']');
+                if($qtyInput.val() > 1 && $qtyInput.val() <=10) {
+                    $qtyInput.val(function(i, oldVal) {
+                        return --oldVal;
+                    });
+                }
+            })
+        });
+    </script>
+</body>
+</html>
