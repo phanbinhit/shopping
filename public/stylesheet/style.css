@@ -113,3 +113,12 @@ button, button:focus {
   }
 /*# sourceMappingURL=style.css.map */
 
+.product img {
+  width: 200px;
+  height: 300px;
+}
+
+#main-product {
+  width: 500px;
+  height: 500px;
+}

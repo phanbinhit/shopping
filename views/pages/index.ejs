@@ -28,349 +28,67 @@
             <hr>
             <!-- Owl-carousel -->
             <div class="owl-carousel owl-theme">
-                <div class="item py-2">
-                    <div class="product">
-                        <a href=""><img src="/images/dress/1.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Samsung Galaxy 10</h6>
-                            <div class="rating text-warning font-size-12">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                <% for (var i = 0; i < products.length;  i++) { %>
+                    <div class="item py-2">
+                        <div class="product">
+                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>' class="img-fluid"></a>
+                            <div class="text-center">
+                                <h6><%=products[i].title%></h6>
+                                <div class="rating text-warning font-size-12">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="price py-2">
+                                    <span><%=products[i].price%></span>
+                                </div>
+                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                             </div>
-                            <div class="price py-2">
-                                <span>$152</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                         </div>
                     </div>
-                </div>
-                <div class="item py-2">
-                    <div class="product">
-                        <a href=""><img src="/images/dress/2.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Samsung Galaxy 10</h6>
-                            <div class="rating text-warning font-size-12">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price py-2">
-                                <span>$152</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item py-2">
-                    <div class="product">
-                        <a href=""><img src="/images/bikini/1.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Samsung Galaxy 10</h6>
-                            <div class="rating text-warning font-size-12">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="price py-2">
-                                <span>$152</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item py-2">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/bikini/2.jpg" alt="product2" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Apple Iphone 10</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/jeans/1.jpg" alt="product2" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Apple Iphone 10</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product2" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Apple Iphone 10</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-
+                <% } %>
             </div>
         </div>
     </section>
 
-    <!-- Special Price -->
+    <!-- All product -->
     <section id="special-price">
         <div class="container">
-            <h4 class="font-rubik font-size-20">Special Price</h4>
+            <h4 class="font-rubik font-size-20">All Product</h4>
             <div id="filters" class="button-group text-right">
                 <button class="btn is-checked" data-filter="*">All Brand</button>
-                <button class="btn" data-filter=".Dress">Dress</button>
-                <button class="btn" data-filter=".Bikini">Bikini</button>
-                <button class="btn" data-filter=".Jeans">Jeans</button>
-                <button class="btn" data-filter=".T-shirt">T-shirt</button>
-                <button class="btn" data-filter=".Trainer">Trainer</button>
+                <button class="btn" data-filter=".dress">Dress</button>
+                <button class="btn" data-filter=".bikini">Bikini</button>
+                <button class="btn" data-filter=".jeans">Jeans</button>
+                <button class="btn" data-filter=".trainer">Trainer</button>
             </div>
 
             <div class="grid">
-                <div class="grid-item Dress border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/dress/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Dress 10</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                <% for (var i = 0; i < products.length;  i++) { %>
+                    <div class="grid-item <%=products[i].type%> border">
+                        <div class="item py-2" style="width: 200px">
+                            <div class="product font-rale">
+                                <a href='/product/<%=products[i].id%>'><img src="<%=products[i].image%>" alt="product1" class="img-fluid"></a>
+                                <div class="text-center">
+                                    <h6><%=products[i].title%></h6>
+                                    <div class="rating text-warning font-size-12">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="price py-2">
+                                        <span><%=products[i].price%></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                                 </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="grid-item Bikini border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/bikini/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Bikini 10</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Bikini border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/bikini/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Bikini 11</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Jeans border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/jeans/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Jeans 8</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Jeans border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/jeans/2.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Jeans 7</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item T-shirt border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/t-shirt/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>T-shirt </h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item T-shirt border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/t-shirt/3.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>T-shirt Y</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Trainer border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/trainers/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Trainer A71</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Trainer border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/trainers/2.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Trainer 10</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-item Trainer border">
-                    <div class="item py-2" style="width: 200px">
-                        <div class="product font-rale">
-                            <a href="#"><img src="/images/trainers/1.jpg" alt="product1" class="img-fluid"></a>
-                            <div class="text-center">
-                                <h6>Trainer Pro</h6>
-                                <div class="rating text-warning font-size-12">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price py-2">
-                                    <span>$152</span>
-                                </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </section>
@@ -378,162 +96,31 @@
     <!-- New phones -->
     <section id="new-phones">
         <div class="container py-5">
-            <h4 class="font-rubik font-size-20">New Phones</h4>
+            <h4 class="font-rubik font-size-20">New Clothes</h4>
             <hr>
             <!-- Owl-carousel -->
             <div class="owl-carousel owl-theme">
-                <div class="item py-2 bg-light">
-                    <div class="product">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product1" class="img-fluid"></a>
-                        <div class="text-center">
-                            <h6>Samsung Galaxy 10</h6>
-                            <div class="rating text-warning font-size-12">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                <% for (var i = 0; i < products.length;  i++) { %>
+                    <div class="item py-2 bg-light">
+                        <div class="product">
+                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>' class="img-fluid"></a>
+                            <div class="text-center">
+                                <h6><%=products[i].title%></h6>
+                                <div class="rating text-warning font-size-12">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="price py-2">
+                                    <span><%=products[i].price%></span>
+                                </div>
+                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                             </div>
-                            <div class="price py-2">
-                                <span>$152</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
                         </div>
                     </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product2" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Apple Iphone 10</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product3" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Redmi Node 6</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product4" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Samsung Galaxy Y</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product5" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Aplle Iphone 11 Plus</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product6" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Redmi Note 7</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product8" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Samsung Galaxy A</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="item py-2 bg-light">
-                    <div class="product font-rale">
-                        <a href="#"><img src="/images/dress/1.jpg" alt="product10" class="img-fluid"></a>
-                    </div>
-                    <div class="text-center">
-                        <h6>Apple Iphone 12</h6>
-                        <div class="rating text-warning font-size-12">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="price py-2">
-                            <span>$152</span>
-                        </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </section>
@@ -553,7 +140,6 @@
             //top sale carousel
             $("#top-sale .owl-carousel").owlCarousel({
                 nav: true,
-                loop: true,
                 dots: false,
                 responsive: {
                     0: {
@@ -602,13 +188,6 @@
                nav: false,
                dots: false,
                loop: true,
-            });
-
-            $(".product a").click(function(e) {
-                var alt = $(this).children("img").attr("alt");
-                var src = "./product.html#" + alt;
-                console.log(src);
-                $(this).attr("href", src);
             });
          });
     </script>

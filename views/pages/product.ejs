@@ -12,7 +12,7 @@
             <div class="container py-5">
                 <div class="row">
                     <div class="col-sm-6">
-                        <img id="main-product" src="/images/jeans/5.jpg" alt="" class="img-fluid">
+                        <img id="main-product" src="<%=product.image%>" alt="" class="img-fluid">
                         <div class="form-row font-size-16 pt-4 font-baloo">
                             <div class="col">
                                 <button class="btn btn-danger text-white form-control" type="submit">Proceed to Buy</button>
@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h5 class="font-baloo font-size-20 pt-5">Jeans Calvin Klein new fashion</h5>
-                        <small>by Calvin Klein</small>
+                        <h5 class="font-baloo font-size-20 pt-5"><%=product.title%></h5>
+                        <small>by <%=product.branch%></small>
                         <div class="d-flex">
                             <div class="rating text-warning font-size-14">
                                 <i class="fa fa-star"></i>
@@ -38,22 +38,16 @@
                         <hr class="m-0">
                         <table class="my-3">
                             <tr class="font-rale font-size-14">
-                                <td>M.R.P:</td>
-                                <td>
-                                    <small><strike>$162.00</strike></small>
-                                </td>
-                            </tr>
-                            <tr class="font-rale font-size-14">
                                 <td>Giá bán:</td>
                                 <td class="font-size-20 text-danger"> 
-                                    $<span>152.00</span>
+                                    $<span><%=product.price%></span>
                                     <small class="text-dark font-size-12">Inclusive of all taxes</small>
                                 </td>
                             </tr>
                             <tr class="font-rale font-size-14">
                                 <td>Bạn trả:</td>
                                 <td class="font-size-16 text-danger"> 
-                                    $<span>152.00</span>
+                                    $<span><%=product.price%></span>
                                 </td>
                             </tr>
                         </table>
@@ -115,10 +109,7 @@
                         <h6 class="font-rubik">Product decription</h6>
                         <hr>
                         <p class="font-rale font-size-14">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat inventore vero numquam error est ipsa, consequuntur temporibus debitis nobis sit, delectus officia ducimus dolorum sed corrupti. Sapiente optio sunt provident, accusantium eligendi eius reiciendis animi? Laboriosam, optio qui? Numquam, quo fuga. Maiores minus, accusantium velit numquam a aliquam vitae vel?
-                        </p>
-                        <p class="font-rale font-size-14">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat inventore vero numquam error est ipsa, consequuntur temporibus debitis nobis sit, delectus officia ducimus dolorum sed corrupti. Sapiente optio sunt provident, accusantium eligendi eius reiciendis animi? Laboriosam, optio qui? Numquam, quo fuga. Maiores minus, accusantium velit numquam a aliquam vitae vel?
+                            <%=product.decription%>
                         </p>
                     </div>
                 </div>
