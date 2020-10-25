@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 const User = require('../models/user.model');
 const Product = require('../models/product.model');
 
 module.exports = {
     postID: async (req, res, next) => {
-        console.log("POST cart func");
         let products = req.body.product;
         let users = await User.find();
         for (let product of products) {
@@ -27,10 +25,8 @@ module.exports = {
         }
     },
     cart: async (req, res, next) => {
-        console.log("GET cart func");
         let users = await User.findById("5f9247eb873dd289ba2b9b32");
         let cart = users.cart;
-        console.log(cart);
         let products = [];
         
         for (let product of cart) {
@@ -42,5 +38,5 @@ module.exports = {
             products: products
         });
         
-}
+    }
 }

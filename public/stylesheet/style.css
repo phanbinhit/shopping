@@ -122,3 +122,7 @@ button, button:focus {
   width: 500px;
   height: 500px;
 }
+
+#cart {
+  cursor: pointer;
+}

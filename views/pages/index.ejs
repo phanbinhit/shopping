@@ -47,12 +47,8 @@
                                 <div class="price py-2">
                                     <span><%=products[i].price%></span>
                                 </div>
-<<<<<<< HEAD
                                 <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add to
                                     Cart</a>
-=======
-                                <a class="btn btn-warning font-size-12" href="/cart/add/<%=products[i].id%>">Add to Cart</a>
->>>>>>> test
                             </div>
                         </div>
                     </div>
@@ -92,9 +88,8 @@
                                     <div class="price py-2">
                                         <span><%=products[i].price%></span>
                                     </div>
-                                    <button type="submit" class="btn btn-warning font-size-12 add-to-cart"
-                                        value='<%=products[i].id%>'>Add
-                                        to Cart</button>
+                                    <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add to
+                                        Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +123,8 @@
                                 <div class="price py-2">
                                     <span><%=products[i].price%></span>
                                 </div>
-                                <a class="btn btn-warning font-size-12" href="/cart">Add to Cart</a>
+                                <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add to
+                                    Cart</a>
                             </div>
                         </div>
                     </div>
@@ -201,14 +197,12 @@
                 dots: false,
                 loop: true,
             });
-
-
-
         });
 
         let storageKey = 'addToCart';
         let dataString = localStorage.getItem(storageKey);
         let products;
+        
         if (dataString) {
             products = JSON.parse(dataString);
         } else {
@@ -222,14 +216,32 @@
                 id: id,
                 number: 1
             }
+            
             products.push(value);
             localStorage.setItem(storageKey, JSON.stringify(products));
             let currentLength = $("#number-of-cart").text();
-            let number = parseInt(currentLength) + 1;
+            let number = parseInt(currentLength) + 1
             $("#number-of-cart").html(number);
         });
 
         $("#cart").click(function (e) {
+            doAfter(postCart)
+                .then(() => {
+                    window.location.href = "/cart";
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        })
+
+        function doAfter(callBack) {
+            return new Promise((resolve, reject) => {
+                callBack();
+                setTimeout(resolve, 100);
+            })
+        }
+
+        function postCart() {
             dataString = JSON.parse(localStorage.getItem(storageKey));
             if (dataString != null) {
                 $.ajax({
@@ -241,9 +253,8 @@
                 });
                 localStorage.clear();
             }
+        }
 
-
-        })
     </script>
 </body>
 

@@ -4,7 +4,5 @@ const cartController = require('../controllers/cart.controller');
 
 router.post('/', cartController.postID);
 router.get('/', cartController.cart);
-router.get('/add/:id', cartController.addCart);
-
 
 module.exports = router;
