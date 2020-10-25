@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include ("../partials/head") %>
 </head>
+
 <body>
     <header id="header">
         <%- include ("../partials/header") %>
     </header>
     <main id="main">
-      <section id="banner-area">
-        <div class="owl-carousel owl-theme">
-          <div class="item">
-            <img src="/images/banner/1.jpg" alt="" class="img-fluid" height="80%">
-          </div>
-          <div class="item">
-            <img src="/images/banner/2.jpg" alt="" class="img-fluid" height="80%">
-          </div>
-          <div class="item">
-            <img src="/images/banner/3.jpg" alt="" class="img-fluid" height="80%">
-          </div>
-      </div>
-      </section>
-      <!-- Top sale -->
-      <section id="top-sale">
-        <div class="container py-5">
-            <h4 class="font-rubik font-size-20">Top Sale</h4>
-            <hr>
-            <!-- Owl-carousel -->
+        <section id="banner-area">
             <div class="owl-carousel owl-theme">
-                <% for (var i = 0; i < products.length;  i++) { %>
+                <div class="item">
+                    <img src="/images/banner/1.jpg" alt="" class="img-fluid" height="80%">
+                </div>
+                <div class="item">
+                    <img src="/images/banner/2.jpg" alt="" class="img-fluid" height="80%">
+                </div>
+                <div class="item">
+                    <img src="/images/banner/3.jpg" alt="" class="img-fluid" height="80%">
+                </div>
+            </div>
+        </section>
+        <!-- Top sale -->
+        <section id="top-sale">
+            <div class="container py-5">
+                <h4 class="font-rubik font-size-20">Top Sale</h4>
+                <hr>
+                <!-- Owl-carousel -->
+                <div class="owl-carousel owl-theme">
+                    <% for (var i = 0; i < products.length;  i++) { %>
                     <div class="item py-2">
                         <div class="product">
-                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>' class="img-fluid"></a>
+                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>'
+                                    class="img-fluid"></a>
                             <div class="text-center">
                                 <h6><%=products[i].title%></h6>
                                 <div class="rating text-warning font-size-12">
@@ -44,33 +47,35 @@
                                 <div class="price py-2">
                                     <span><%=products[i].price%></span>
                                 </div>
-                                <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
+                                <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add to
+                                    Cart</a>
                             </div>
                         </div>
                     </div>
-                <% } %>
+                    <% } %>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- All product -->
-    <section id="special-price">
-        <div class="container">
-            <h4 class="font-rubik font-size-20">All Product</h4>
-            <div id="filters" class="button-group text-right">
-                <button class="btn is-checked" data-filter="*">All Brand</button>
-                <button class="btn" data-filter=".dress">Dress</button>
-                <button class="btn" data-filter=".bikini">Bikini</button>
-                <button class="btn" data-filter=".jeans">Jeans</button>
-                <button class="btn" data-filter=".trainer">Trainer</button>
-            </div>
+        <!-- All product -->
+        <section id="special-price">
+            <div class="container">
+                <h4 class="font-rubik font-size-20">All Product</h4>
+                <div id="filters" class="button-group text-right">
+                    <button class="btn is-checked" data-filter="*">All Brand</button>
+                    <button class="btn" data-filter=".dress">Dress</button>
+                    <button class="btn" data-filter=".bikini">Bikini</button>
+                    <button class="btn" data-filter=".jeans">Jeans</button>
+                    <button class="btn" data-filter=".trainer">Trainer</button>
+                </div>
 
-            <div class="grid">
-                <% for (var i = 0; i < products.length;  i++) { %>
+                <div class="grid">
+                    <% for (var i = 0; i < products.length;  i++) { %>
                     <div class="grid-item <%=products[i].type%> border">
                         <div class="item py-2" style="width: 200px">
                             <div class="product font-rale">
-                                <a href='/product/<%=products[i].id%>'><img src="<%=products[i].image%>" alt="product1" class="img-fluid"></a>
+                                <a href='/product/<%=products[i].id%>'><img src="<%=products[i].image%>" alt="product1"
+                                        class="img-fluid"></a>
                                 <div class="text-center">
                                     <h6><%=products[i].title%></h6>
                                     <div class="rating text-warning font-size-12">
@@ -83,27 +88,30 @@
                                     <div class="price py-2">
                                         <span><%=products[i].price%></span>
                                     </div>
-                                    <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
+                                    <button type="submit" class="btn btn-warning font-size-12 add-to-cart"
+                                        value='<%=products[i].id%>'>Add
+                                        to Cart</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <% } %>
+                    <% } %>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- New phones -->
-    <section id="new-phones">
-        <div class="container py-5">
-            <h4 class="font-rubik font-size-20">New Clothes</h4>
-            <hr>
-            <!-- Owl-carousel -->
-            <div class="owl-carousel owl-theme">
-                <% for (var i = 0; i < products.length;  i++) { %>
+        <!-- New phones -->
+        <section id="new-phones">
+            <div class="container py-5">
+                <h4 class="font-rubik font-size-20">New Clothes</h4>
+                <hr>
+                <!-- Owl-carousel -->
+                <div class="owl-carousel owl-theme">
+                    <% for (var i = 0; i < products.length;  i++) { %>
                     <div class="item py-2 bg-light">
                         <div class="product">
-                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>' class="img-fluid"></a>
+                            <a href='/product/<%=products[i].id%>'><img src='<%=products[i].image%>'
+                                    class="img-fluid"></a>
                             <div class="text-center">
                                 <h6><%=products[i].title%></h6>
                                 <div class="rating text-warning font-size-12">
@@ -120,10 +128,10 @@
                             </div>
                         </div>
                     </div>
-                <% } %>
+                    <% } %>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     </main>
     <footer id="footer" class="bg-dark text-white py-5">
@@ -131,9 +139,9 @@
     </footer>
     <%- include("../partials/script")  %>
     <script>
-         $(document).ready(function(){
-          // banner owl carousel
-          $("#banner-area .owl-carousel").owlCarousel({
+        $(document).ready(function () {
+            // banner owl carousel
+            $("#banner-area .owl-carousel").owlCarousel({
                 dots: true,
                 items: 1
             });
@@ -160,18 +168,18 @@
             });
 
             //filter items on button click
-            $(".button-group").on("click","button",function() {
+            $(".button-group").on("click", "button", function () {
                 var filterValue = $(this).attr('data-filter');
-                $grid.isotope({filter: filterValue});
+                $grid.isotope({ filter: filterValue });
             })
 
             //new phone carousel
             $("#new-phones .owl-carousel").owlCarousel({
-               items: 5,
-               nav: false,
-               dots: true,
-               loop: true,
-               responsive: {
+                items: 5,
+                nav: false,
+                dots: true,
+                loop: true,
+                responsive: {
                     0: {
                         items: 1
                     },
@@ -184,12 +192,55 @@
                 }
             });
             $("#laest-block .owl-carousel").owlCarousel({
-               items: 3,
-               nav: false,
-               dots: false,
-               loop: true,
+                items: 3,
+                nav: false,
+                dots: false,
+                loop: true,
             });
-         });
+
+
+
+        });
+
+        let storageKey = 'addToCart';
+        let dataString = localStorage.getItem(storageKey);
+        let products;
+        if (dataString) {
+            products = JSON.parse(dataString);
+        } else {
+            products = [];
+        }
+        $(".add-to-cart").click(function (e) {
+            e.preventDefault();
+            let id = $(this).attr('value');
+
+            let value = {
+                id: id,
+                number: 1
+            }
+            products.push(value);
+            localStorage.setItem(storageKey, JSON.stringify(products));
+            let currentLength = $("#number-of-cart").text();
+            let number = parseInt(currentLength) + 1;
+            $("#number-of-cart").html(number);
+        });
+
+        $("#cart").click(function (e) {
+            dataString = JSON.parse(localStorage.getItem(storageKey));
+            if (dataString != null) {
+                $.ajax({
+                    url: '/cart',
+                    type: 'POST',
+                    data: {
+                        product: dataString
+                    }
+                });
+                localStorage.clear();
+            }
+
+
+        })
     </script>
 </body>
+
 </html>
