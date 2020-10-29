@@ -149,6 +149,7 @@
             $("#top-sale .owl-carousel").owlCarousel({
                 nav: true,
                 dots: false,
+                loop: true,
                 responsive: {
                     0: {
                         items: 1
@@ -161,6 +162,7 @@
                     }
                 }
             });
+
 
             var $grid = $(".grid").isotope({
                 itemSelector: '.grid-item',
@@ -199,62 +201,27 @@
             });
         });
 
-        let storageKey = 'addToCart';
-        let dataString = localStorage.getItem(storageKey);
-        let products;
-        
-        if (dataString) {
-            products = JSON.parse(dataString);
-        } else {
-            products = [];
-        }
+
+
         $(".add-to-cart").click(function (e) {
             e.preventDefault();
             let id = $(this).attr('value');
-
-            let value = {
-                id: id,
-                number: 1
-            }
-            
-            products.push(value);
-            localStorage.setItem(storageKey, JSON.stringify(products));
-            let currentLength = $("#number-of-cart").text();
-            let number = parseInt(currentLength) + 1
-            $("#number-of-cart").html(number);
-        });
-
-        $("#cart").click(function (e) {
-            doAfter(postCart)
-                .then(() => {
-                    window.location.href = "/cart";
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-        })
-
-        function doAfter(callBack) {
-            return new Promise((resolve, reject) => {
-                callBack();
-                setTimeout(resolve, 100);
-            })
-        }
-
-        function postCart() {
-            dataString = JSON.parse(localStorage.getItem(storageKey));
-            if (dataString != null) {
-                $.ajax({
-                    url: '/cart',
-                    type: 'POST',
-                    data: {
-                        product: dataString
+            $.ajax({
+                type: 'GET',
+                data: {
+                    product: {
+                        id: id,
+                        number: 1
                     }
-                });
-                localStorage.clear();
-            }
-        }
-
+                },
+                url: '/cart/add/' + id,
+                success: () => {
+                    console.log("add success" + id);
+                }
+            });
+            let currentNumber = parseInt($('#number-of-cart').text()) + 1;
+            $('#number-of-cart').html(currentNumber);
+        });
     </script>
 </body>
 
