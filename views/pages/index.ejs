@@ -6,6 +6,11 @@
 </head>
 
 <body>
+    <div class="toast ">
+        <div class="toast-body">
+            <span id="result-add-cart">Some text inside the toast body</span>
+        </div>
+    </div>
     <header id="header">
         <%- include ("../partials/header") %>
     </header>
@@ -88,7 +93,8 @@
                                     <div class="price py-2">
                                         <span><%=products[i].price%></span>
                                     </div>
-                                    <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add to
+                                    <a class="btn btn-warning font-size-12 add-to-cart" value='<%=products[i].id%>'>Add
+                                        to
                                         Cart</a>
                                 </div>
                             </div>
@@ -132,7 +138,6 @@
                 </div>
             </div>
         </section>
-
     </main>
     <footer id="footer" class="bg-dark text-white py-5">
         <%- include ("../partials/footer") %>
@@ -218,6 +223,15 @@
                 success: () => {
                     console.log("add success" + id);
                 }
+            }).done(function (data) {
+                console.log(data);
+                if (data == -1) {
+                    $('#result-add-cart').html('Add success')
+                } else {
+                    $('#result-add-cart').html('Exist Item')
+                }
+                $('.toast').toast('show');
+                
             });
             let currentNumber = parseInt($('#number-of-cart').text()) + 1;
             $('#number-of-cart').html(currentNumber);
