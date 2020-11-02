@@ -5,11 +5,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 //router
-const indexRouter = require('./routers/index.route');
-const productRouter = require('./routers/product.route');
-const cartRouter = require('./routers/cart.route');
+const indexRouter = require('./routers/user/index.route');
+const productRouter = require('./routers/user/product.route');
+const cartRouter = require('./routers/user/cart.route');
 const cartMiddleware = require('./middlewares/cart.middleware');
-const authRouter = require('./routers/auth.route');
+
+const adminCategories = require('./routers/admin/admin_categories');
+//const adminProducts = require('./routers/admin/admin_products');
+
 
 //set view engine
 app.set('view engine', 'ejs');
@@ -28,7 +31,10 @@ app.use(cartMiddleware);
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/cart', cartRouter);
-app.use('/auth', authRouter);
+
+app.use('/admin/categories', adminCategories);
+// app.use('/admin/products', adminProducts);
+
 
 app.listen(PORT, () => {
     console.log('Server listening on port:' + PORT);
