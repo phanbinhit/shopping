@@ -227,14 +227,15 @@
                 console.log(data);
                 if (data == -1) {
                     $('#result-add-cart').html('Add success')
+                    let currentNumber = parseInt($('#number-of-cart').text()) + 1;
+                    $('#number-of-cart').html(currentNumber);
                 } else {
                     $('#result-add-cart').html('Exist Item')
                 }
                 $('.toast').toast('show');
-                
+
             });
-            let currentNumber = parseInt($('#number-of-cart').text()) + 1;
-            $('#number-of-cart').html(currentNumber);
+
         });
     </script>
 </body>
