@@ -9,7 +9,6 @@ const indexRouter = require('./routers/user/index.route');
 const productRouter = require('./routers/user/product.route');
 const cartRouter = require('./routers/user/cart.route');
 const cartMiddleware = require('./middlewares/cart.middleware');
-
 const adminCategories = require('./routers/admin/admin_categories');
 //const adminProducts = require('./routers/admin/admin_products');
 
