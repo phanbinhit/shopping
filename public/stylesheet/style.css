@@ -143,3 +143,84 @@ button, button:focus {
   padding: 16px;
   font-size: 17px;
 }
+
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#main {
+  margin-top: 5%;
+}
+
+.logo {
+  position: relative;
+  top: 10%;
+}
+
+.logo-header{
+  width: 8%;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.nav-bar-left li{
+  display: inline-flex;
+}
+
+.nav-bar-left li a {
+  color: #ddd;
+}
+
+.con-cart a {
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.form-search {
+  position: relative;
+}
+
+.input-search {
+  border-radius: 20px;
+}
+
+.btn-search {
+  position: absolute;
+  left: 160px;
+}
+
+.fa-user {
+  color: #fff;
+  padding: 4px 6px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.dropdown-menu-user {
+  position: absolute;
+  left: -100%;
+}
+
+.dropdown-menu-user .dropdown-item a {
+  text-decoration: none;
+}
+
+.register-link {
+  display: block;
+}
+
+.form-label-group {
+  margin-bottom: 20px;
+}
+
+.con-total {
+  position: fixed;
+  top: 50%;
+  transform: translate(0, -50%);
+}

@@ -27,7 +27,6 @@ module.exports = {
         })
 
         let isSuccess = ids.indexOf(data.id)
-        console.log(isSuccess);
         if (isSuccess == -1) {
             User.updateOne(
                 {
@@ -47,6 +46,6 @@ module.exports = {
         }
         res.send(isSuccess + "")
         return
-        res.redirect('/');
+        res.redirect('/' + data.href);
     }
 }

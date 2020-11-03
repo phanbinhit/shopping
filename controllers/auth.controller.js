@@ -22,5 +22,11 @@ module.exports = {
             console.log('Cookies: ', req.cookies);
             res.redirect('/auth/login');
         }
+    }, 
+    register: async (req, res, next) => {
+        res.render('pages/register');
+    },
+    postRegister: async (req, res, next) => {
+        
     }
 }

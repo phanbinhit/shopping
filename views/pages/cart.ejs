@@ -37,12 +37,12 @@
                                 </div>
                                 <div class="d-flex q-ty pt-2">
                                     <div class="d-flex font-rale w-50">
-                                        <button class="qty-up btn bg-light border" data-id="pro-2">
+                                        <button class="qty-up btn bg-light border" data-id="<%=products[i].id%>">
                                             <i class="fa fa-angle-up"></i>
                                         </button>
-                                        <input type="text" data-id="pro-2" class="qty-input bg-light px-2 border w-100"
+                                        <input type="text" data-id="<%=products[i].id%>" class="qty-input bg-light px-2 border w-100"
                                             disabled value="1" placeholder="1">
-                                        <button data-id="pro-2" class="qty-down btn bg-light border">
+                                        <button data-id="<%=products[i].id%>" class="qty-down btn bg-light border">
                                             <i class="fa fa-angle-down"></i>
                                         </button>
                                     </div>
@@ -55,14 +55,15 @@
                                 </div>
                             </div>
                             <div class="col-sm-2 text-right">
-                                <div class=" text-danger font-baloo font-size-20">$<span
-                                        class="product-price"><%=products[i].price%></span></div>
+                                <div class=" text-danger font-baloo font-size-20">$
+                                    <span class="product-price" data-id="<%=products[i].id%>"><%=products[i].price%></span>
+                                </div>
                             </div>
                         </div>
                         <% } %>
                     </div>
                     <div class="col-sm-3">
-                        <div class="border text-center py-3">
+                        <div class="border text-center py-3 con-total">
                             <h6 class="font-size-12 font-rale text-success">
                                 <i class="fa fa-check"></i>
                                 Your order is eligible for FREE Delivery
@@ -70,7 +71,7 @@
                             <div class="border-top py-4">
                                 <div>
                                     <h5 class="font-baloo font-size-20">
-                                        Subtotal(2 item): <span id="price" class=" text-danger">$152</span>
+                                        Subtotal(2 item): <span id="price" class=" text-danger"></span>
                                     </h5>
                                 </div>
                                 <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
@@ -99,6 +100,10 @@
                         return ++oldVal;
                     });
                 }
+                let number = parseInt($('.qty-input[data-id=' + ($(this).data("id")) + ']').val());
+                let newPrice = 100 * number;
+                $('.product-price[data-id=' + ($(this).data("id")) + ']').html(newPrice);
+                total();
             });
 
             $qtyDown.click(function (e) {
@@ -108,7 +113,25 @@
                         return --oldVal;
                     });
                 }
+                let number = parseInt($('.qty-input[data-id=' + ($(this).data("id")) + ']').val());
+                let newPrice = 100 * number;
+                $('.product-price[data-id=' + ($(this).data("id")) + ']').html(newPrice);
+                total();
             })
+
+            function total() {
+                let prices = [];
+                //let sum = 0;
+                $('.product-price').each(function(index) {
+                    prices.push(parseInt($(this).text()));
+                });
+                let sum = prices.reduce((sum, current) => {
+                    return sum + current;
+                }, 0);
+                $('#price').html(sum);
+            }
+
+            total();
         });
         
     </script>

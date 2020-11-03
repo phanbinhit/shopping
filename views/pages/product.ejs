@@ -4,6 +4,11 @@
     <%- include("../partials/head") %>
 </head>
 <body>
+    <div class="toast ">
+        <div class="toast-body">
+            <span id="result-add-cart">Some text inside the toast body</span>
+        </div>
+    </div>
     <header>
         <%- include("../partials/header") %>
     </header>
@@ -18,7 +23,7 @@
                                 <button class="btn btn-danger text-white form-control" type="submit">Proceed to Buy</button>
                             </div>
                             <div class="col">
-                                <button class="btn btn-warning text-dark form-control" type="submit">Add to Card</button>
+                                <a class="btn btn-warning text-dark form-control add-to-cart" value='<%=product.id%>' type="submit">Add to Card</a>
                             </div>
                         </div>
                     </div>
@@ -121,7 +126,37 @@
     </footer>
     <%- include("../partials/script") %>
     <script>
-        
+        $(".add-to-cart").click(function (e) {
+            e.preventDefault();
+            let id = $(this).attr('value');
+            let href = window.location.href.split('/')[3];
+            $.ajax({
+                type: 'GET',
+                data: {
+                    product: {
+                        id: id,
+                        number: 1,
+                        href: href
+                    }
+                },
+                url: '/cart/add/' + id,
+                success: () => {
+                    console.log("add success" + id);
+                }
+            }).done(function (data) {
+                console.log(data);
+                if (data == -1) {
+                    $('#result-add-cart').html('Add success')
+                    let currentNumber = parseInt($('#number-of-cart').text()) + 1;
+                    $('#number-of-cart').html(currentNumber);
+                } else {
+                    $('#result-add-cart').html('Exist Item')
+                }
+                $('.toast').toast('show');
+
+            });
+
+        });
     </script>
 </body>
 </html>

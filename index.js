@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3011 | process.env.PORT;
+const PORT = 5000 | process.env.PORT;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -10,6 +10,7 @@ const productRouter = require('./routers/user/product.route');
 const cartRouter = require('./routers/user/cart.route');
 const cartMiddleware = require('./middlewares/cart.middleware');
 const adminCategories = require('./routers/admin/admin_categories');
+const authRouter = require('./routers/user/auth.route');
 //const adminProducts = require('./routers/admin/admin_products');
 
 
@@ -30,7 +31,7 @@ app.use(cartMiddleware);
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/cart', cartRouter);
-
+app.use('/auth', authRouter);
 app.use('/admin/categories', adminCategories);
 // app.use('/admin/products', adminProducts);
 
