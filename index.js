@@ -10,6 +10,7 @@ const productRouter = require('./routers/user/product.route');
 const cartRouter = require('./routers/user/cart.route');
 const cartMiddleware = require('./middlewares/cart.middleware');
 const adminCategories = require('./routers/admin/admin_categories');
+const adminProducts = require('./routers/admin/admin_products');
 const authRouter = require('./routers/user/auth.route');
 //const adminProducts = require('./routers/admin/admin_products');
 
@@ -33,7 +34,7 @@ app.use('/product', productRouter);
 app.use('/cart', cartRouter);
 app.use('/auth', authRouter);
 app.use('/admin/categories', adminCategories);
-// app.use('/admin/products', adminProducts);
+app.use('/admin/products', adminProducts);
 
 
 app.listen(PORT, () => {

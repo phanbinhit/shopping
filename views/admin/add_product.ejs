@@ -1,0 +1,85 @@
+<head>
+  <%- include("../partials/head") %>
+</head>
+
+<%- include("../partials/headeradmin") %>
+
+<main role="main" class="container">
+  <div class="starter-template">
+    <h2 class="page-title">Add A Product</h2>
+    <a href="/admin/categories" class="btn btn-primary">Back to all products</a>
+    <br />
+
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label for="">Title</label>
+        <input
+          type="text"
+          name="title"
+          value="<%= title %>"
+          class="form-control"
+          placeholder="Title"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="">Branch</label>
+        <input
+          type="text"
+          name="branch"
+          value="<%= branch %>"
+          class="form-control"
+          placeholder="Branch"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="">Price</label>
+        <input
+          type="text"
+          name="price"
+          value="<%= price %>"
+          class="form-control"
+          placeholder="Price"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="">Category</label>
+        <select name="category" class="form-control">
+          <% categories.forEach(function(cat){ %>
+          <option value="<%= cat.slug %>"><%= cat.title %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="">Inventory Number</label>
+        <input
+          type="text"
+          name="inventoryNumber"
+          value="<%= inventoryNumber %>"
+          class="form-control"
+          placeholder="Inventory Number"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="">Sold Number</label>
+        <input
+          type="text"
+          name="soldNumber"
+          value="<%= soldNumber %>"
+          class="form-control"
+          placeholder="Sold Number"
+        />
+      </div>
+
+      <button class="btn btn-light">Submit</button>
+    </form>
+  </div>
+</main>
+
+<footer id="footer" class="bg-dark text-white py-5">
+  <%- include ("../partials/footer") %>
+</footer>

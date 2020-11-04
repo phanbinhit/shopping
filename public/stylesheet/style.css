@@ -224,3 +224,8 @@ button, button:focus {
   top: 50%;
   transform: translate(0, -50%);
 }
+
+#noimage {
+  width: 100px;
+  height: 100px;
+}

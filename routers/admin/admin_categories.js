@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-// Category model 
 const category = require("../../controllers/category.admin.controller");
 
 router.get('/', category.getAllCategories)
