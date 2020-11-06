@@ -6,10 +6,10 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <%- include("../partials/header") %>
     </header>
-    <main>
+    <main id="main">
         <section id="cart" class="py-3">
             <div class="container-fluid w-75">
                 <h5 class="font-baloo font-size-20">Shopping Cart</h5>
@@ -41,16 +41,13 @@
                                             <i class="fa fa-angle-up"></i>
                                         </button>
                                         <input type="text" data-id="<%=products[i].id%>" class="qty-input bg-light px-2 border w-100"
-                                            disabled value="1" placeholder="1">
+                                            disabled value="<%=cart[i].number%>" placeholder="1">
                                         <button data-id="<%=products[i].id%>" class="qty-down btn bg-light border">
                                             <i class="fa fa-angle-down"></i>
                                         </button>
                                     </div>
-                                    <button class="btn text-danger" type="submit">
+                                    <button data-id="<%=products[i].id%>" class="btn text-danger btn-delete" type="submit">
                                         Delete
-                                    </button>
-                                    <button class="btn text-danger border-left rounded-0" type="submit">
-                                        Save for Later
                                     </button>
                                 </div>
                             </div>
@@ -71,7 +68,7 @@
                             <div class="border-top py-4">
                                 <div>
                                     <h5 class="font-baloo font-size-20">
-                                        Subtotal(2 item): <span id="price" class=" text-danger"></span>
+                                        Subtotal(<%=products.length%> item): <span id="price" class=" text-danger"></span>
                                     </h5>
                                 </div>
                                 <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
@@ -104,6 +101,19 @@
                 let newPrice = 100 * number;
                 $('.product-price[data-id=' + ($(this).data("id")) + ']').html(newPrice);
                 total();
+
+                //update database
+                let id = $(this).data("id");
+                $.ajax({
+                    type: 'POST', 
+                    data: {
+                        product: {
+                            id: id,
+                            number: number
+                        }
+                    },
+                    url: "/cart/edit"
+                });
             });
 
             $qtyDown.click(function (e) {
@@ -117,6 +127,18 @@
                 let newPrice = 100 * number;
                 $('.product-price[data-id=' + ($(this).data("id")) + ']').html(newPrice);
                 total();
+                 //update database
+                 let id = $(this).data("id");
+                $.ajax({
+                    type: 'POST', 
+                    data: {
+                        product: {
+                            id: id,
+                            number: number
+                        }
+                    },
+                    url: "/cart/edit"
+                });
             })
 
             function total() {
@@ -132,6 +154,10 @@
             }
 
             total();
+
+            $('.btn-delete').click(function(e) {
+                console.log($(this).data("id"));
+            });
         });
         
     </script>

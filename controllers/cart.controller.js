@@ -13,7 +13,8 @@ module.exports = {
         }
 
         res.render('pages/cart', {
-            products: products
+            products: products,
+            cart: cart
         });
 
     },
@@ -47,5 +48,16 @@ module.exports = {
         res.send(isSuccess + "")
         return
         res.redirect('/' + data.href);
+    },
+    postEditCart: async (req, res, next) => {
+        let data = req.body.product;
+        User.updateOne(
+            {"_id": "5f9247eb873dd289ba2b9b32", "cart.id": data.id},
+            { "$set": { "cart.$.number": data.number } },
+            function(err, docs) {
+                if (err) throw err;
+            }
+        )
+        res.redirect('/cart');
     }
 }
