@@ -59,5 +59,21 @@ module.exports = {
             }
         )
         res.redirect('/cart');
+    },
+    deleteProduct: async(req, res, next) => {
+        let data = req.body.product;
+        let isSuccess = true;
+        User.updateOne(
+            {"_id": "5f9247eb873dd289ba2b9b32", "cart.id": data.id},
+            { "$pull": { "cart": data } },
+            function(err, docs) {
+                if (err) throw err;
+                isSuccess = false;
+                
+            }
+        )
+        res.send(isSuccess + "");
+        return 
+        res.redirect('/cart')
     }
 }

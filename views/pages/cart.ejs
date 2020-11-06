@@ -6,6 +6,11 @@
 </head>
 
 <body>
+    <div class="toast ">
+        <div class="toast-body">
+            <span id="result-add-cart">Some text inside the toast body</span>
+        </div>
+    </div>
     <header id="header">
         <%- include("../partials/header") %>
     </header>
@@ -40,20 +45,22 @@
                                         <button class="qty-up btn bg-light border" data-id="<%=products[i].id%>">
                                             <i class="fa fa-angle-up"></i>
                                         </button>
-                                        <input type="text" data-id="<%=products[i].id%>" class="qty-input bg-light px-2 border w-100"
-                                            disabled value="<%=cart[i].number%>" placeholder="1">
+                                        <input type="text" data-id="<%=products[i].id%>"
+                                            class="qty-input bg-light px-2 border w-100" disabled
+                                            value="<%=cart[i].number%>" placeholder="1">
                                         <button data-id="<%=products[i].id%>" class="qty-down btn bg-light border">
                                             <i class="fa fa-angle-down"></i>
                                         </button>
                                     </div>
-                                    <button data-id="<%=products[i].id%>" class="btn text-danger btn-delete" type="submit">
+                                    <button data-id="<%=products[i].id%>" class="btn text-danger btn-delete">
                                         Delete
                                     </button>
                                 </div>
                             </div>
                             <div class="col-sm-2 text-right">
                                 <div class=" text-danger font-baloo font-size-20">$
-                                    <span class="product-price" data-id="<%=products[i].id%>"><%=products[i].price%></span>
+                                    <span class="product-price"
+                                        data-id="<%=products[i].id%>"><%=products[i].price * cart[i].number%></span>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +75,8 @@
                             <div class="border-top py-4">
                                 <div>
                                     <h5 class="font-baloo font-size-20">
-                                        Subtotal(<%=products.length%> item): <span id="price" class=" text-danger"></span>
+                                        Subtotal(<%=products.length%> item): <span id="price"
+                                            class=" text-danger"></span>
                                     </h5>
                                 </div>
                                 <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
@@ -105,7 +113,7 @@
                 //update database
                 let id = $(this).data("id");
                 $.ajax({
-                    type: 'POST', 
+                    type: 'POST',
                     data: {
                         product: {
                             id: id,
@@ -127,10 +135,10 @@
                 let newPrice = 100 * number;
                 $('.product-price[data-id=' + ($(this).data("id")) + ']').html(newPrice);
                 total();
-                 //update database
-                 let id = $(this).data("id");
+                //update database
+                let id = $(this).data("id");
                 $.ajax({
-                    type: 'POST', 
+                    type: 'POST',
                     data: {
                         product: {
                             id: id,
@@ -144,7 +152,7 @@
             function total() {
                 let prices = [];
                 //let sum = 0;
-                $('.product-price').each(function(index) {
+                $('.product-price').each(function (index) {
                     prices.push(parseInt($(this).text()));
                 });
                 let sum = prices.reduce((sum, current) => {
@@ -155,11 +163,35 @@
 
             total();
 
-            $('.btn-delete').click(function(e) {
-                console.log($(this).data("id"));
+            $('.btn-delete').click(function (e) {
+                let id = $(this).data("id");
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        product: {
+                            id: id,
+                        }
+                    },
+                    url: "/cart/delete",
+                    success: () => {
+                        console.log("delete success" + id);
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                    if (data == "true") {
+                        $('#result-add-cart').html('Delete success')
+                    } else {
+                        $('#result-add-cart').html('Delete failed')
+                    }
+                    $('.toast').toast('show');
+                    setTimeout(function () {
+                        location.reload();
+                    }, 100);
+
+                });
             });
         });
-        
+
     </script>
 </body>
 
