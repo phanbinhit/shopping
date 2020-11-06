@@ -73,13 +73,15 @@
                                 Your order is eligible for FREE Delivery
                             </h6>
                             <div class="border-top py-4">
-                                <div>
-                                    <h5 class="font-baloo font-size-20">
-                                        Subtotal(<%=products.length%> item): <span id="price"
-                                            class=" text-danger"></span>
-                                    </h5>
-                                </div>
-                                <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
+                                <form action="cart/buy">
+                                    <div>
+                                        <h5 class="font-baloo font-size-20">
+                                            Subtotal(<%=products.length%> item): <span id="price"
+                                                class=" text-danger"></span>
+                                        </h5>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
+                                </form>
                             </div>
                         </div>
                     </div>

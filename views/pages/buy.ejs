@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ("../partials/head") %>
+</head>
+
+<body>
+  <header>
+    <%- include ("../partials/header") %>
+  </header>
+    <main id="main-login">
+        <div class="container">
+            <div class="row">
+              <div class="mx-auto w-50">
+                <div class="mx-5">
+                  <div class="card card-signin my-5 card-login">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">Nhập thông tin</h5>
+                      <form class="form-signin" action="/auth/login" method="post">
+                        <div class="form-label-group font-size-20">
+                          <label for="">Họ tên: </label>
+                          <input type="text" idcircle="inputHoten" class="form-control" name="hoten" placeholder="Nhập họ tên" required autofocus>
+                        </div>
+                        <div class="form-label-group font-size-20">
+                          <label for="">Địa chỉ: </label>
+                          <input type="text" idcircle="inputDiachi" class="form-control" name="diachi" placeholder="Nhập địa chỉ" required autofocus>
+                        </div>
+                        <div class="form-label-group font-size-20">
+                          <label for="">Số điện thoại: </label>
+                          <input type="text" idcircle="inputSDT" class="form-control" name="sodienthoai" placeholder="Nhập số điện thoại" required autofocus>
+                        </div>
+                        <div class="form-label-group font-size-20">
+                          <label for="">Phương thức thanh toán: </label>
+                          <select name="" id="">
+                              <option value="Visa">Visa</option>
+                              <option value="Bank">Bank</option>
+                          </select>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Buy</button>
+                        <hr class="my-4">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </main>
+    <footer id="footer" class="bg-dark text-white py-5">
+        <%- include ("../partials/footer") %>
+    </footer>
+    <%- include("../partials/script")  %>
+    <script>
+
+    </script>
+</body>
+</html>

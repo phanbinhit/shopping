@@ -75,5 +75,12 @@ module.exports = {
         res.send(isSuccess + "");
         return 
         res.redirect('/cart')
+    },
+
+    buyCart: async (req, res, next) => {
+        
+
+        res.render('pages/buy');
+
     }
 }
