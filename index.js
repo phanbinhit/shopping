@@ -12,6 +12,7 @@ const cartMiddleware = require('./middlewares/cart.middleware');
 const adminCategories = require('./routers/admin/admin_categories');
 const adminProducts = require('./routers/admin/admin_products');
 const authRouter = require('./routers/user/auth.route');
+const orderRouter = require('./routers/user/order.route');
 //const adminProducts = require('./routers/admin/admin_products');
 
 
@@ -35,7 +36,7 @@ app.use('/cart', cartRouter);
 app.use('/auth', authRouter);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
-
+app.use('/order', orderRouter);
 
 app.listen(PORT, () => {
     console.log('Server listening on port:' + PORT);

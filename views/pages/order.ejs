@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/head") %>
+</head>
+
+<body>
+    <header id="header">
+        <%- include("../partials/header") %>
+    </header>
+    <main id="main">
+        <section id="cart" class="py-3">
+            <div class="container-fluid w-75">
+                <h5 class="font-baloo font-size-20 my-3">My Order</h5>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="orders">
+                            <tr>
+                              <th>Order</th>
+                              <th>Date time</th>
+                              <th>State</th>
+                              <th>View</th>
+                            </tr>
+                            <tr>
+                              <td>Order01</td>
+                              <td>10:30 16-07-2020</td>
+                              <td>Delivery</td>
+                              <td><a href="/order/detail">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>Order01</td>
+                                <td>10:30 16-07-2020</td>
+                                <td>Delivery</td>
+                                <td><a href="/order/detail">View</a></td>
+                              </tr>
+                        </table>
+                    </div> 
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-dark text-white py-5">
+        <%- include("../partials/footer") %>
+    </footer>
+    <%- include("../partials/script") %>
+    <script>
+        
+    </script>
+</body>
+
+</html>

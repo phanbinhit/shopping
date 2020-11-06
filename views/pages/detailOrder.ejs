@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/head") %>
+</head>
+
+<body>
+    <header id="header">
+        <%- include("../partials/header") %>
+    </header>
+    <main id="main">
+        <section id="cart" class="py-3">
+            <div class="container-fluid w-75">
+                <h5 class="font-baloo font-size-20">Shopping Cart</h5>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <% for (var i = 0; i < products.length;  i++) { %>
+                        <div class="row border-top py-3 mt-3">
+                            <div class="col-sm-2">
+                                <img src='<%=products[i].image%>' alt="Samsung1" class="img-fluid"
+                                    style="height: 120px">
+                            </div>
+                            <div class="col-sm-8">
+                                <h5 class="font-baloo font-size-20"><%=products[i].title%></h5>
+                                <small>by <%=products[i].branch%></small>
+                                <div class="d-flex">
+                                    <div class="rating text-warning font-size-14">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <a href="#" class="font-size-14 font-rale px-2" style="color: #007bff">20,534
+                                        ratings</a>
+                                </div>
+                                <div class="d-flex q-ty pt-2">
+                                    <div class="d-flex font-rale w-50">
+                                        <span>Number: <%=cart[i].number%></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                <div class=" text-danger font-baloo font-size-20">$
+                                    <span class="product-price" data-id="<%=products[i].id%>"><%=products[i].price * cart[i].number%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="border text-center py-3 con-total">
+                            <h6 class="font-size-12 font-rale text-success">
+                                <i class="fa fa-check"></i>
+                                Your order is eligible for FREE Delivery
+                            </h6>
+                            <div class="border-top py-4">
+                                <div>
+                                    <h5 class="font-baloo font-size-20">
+                                        Subtotal(<%=products.length%> item): <span id="price" class=" text-danger"></span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="bg-dark text-white py-5">
+        <%- include("../partials/footer") %>
+    </footer>
+    <%- include("../partials/script") %>
+    <script>
+        function total() {
+                let prices = [];
+                //let sum = 0;
+                $('.product-price').each(function(index) {
+                    prices.push(parseInt($(this).text()));
+                });
+                let sum = prices.reduce((sum, current) => {
+                    return sum + current;
+                }, 0);
+                $('#price').html(sum);
+            }
+
+            total();
+    </script>
+</body>
+
+</html>

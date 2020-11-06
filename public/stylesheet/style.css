@@ -230,3 +230,25 @@ button, button:focus {
   padding: 4px 8px;
   background: #007bff;
 }
+
+.orders {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.orders td, .orders th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.orders tr:nth-child(even){background-color: #f2f2f2;}
+
+.orders tr:hover {background-color: #ddd;}
+
+.orders th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #c61a2a;
+  color: white;
+}
