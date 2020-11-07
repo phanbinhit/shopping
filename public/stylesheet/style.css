@@ -256,3 +256,8 @@ button, button:focus {
 #imgPreview {
   margin: 20px;
 }
+
+#noimage {
+  width: 100px;
+  height: 100px;
+}
