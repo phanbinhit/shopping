@@ -1,4 +1,6 @@
 const express = require('express');
+const mkdirp = require('mkdirp');
+const fs = require('fs-extra');
 
 const router = express.Router();
 
@@ -58,6 +60,9 @@ module.exports = {
                         } else {
                             req.app.locals.categories = categories;
                         }
+                    });
+                    fs.mkdir('public/images/' + category.title, (err) => {
+                        if (err) { return console.log(err) }
                     });
                     // req.flash('Success', 'Category added!');
                     res.redirect('/admin/categories');
@@ -129,16 +134,23 @@ module.exports = {
         //}
     },
     deleteCategory: async (req, res, next) => {
-        Category.findByIdAndRemove(req.params.id, (err) => {
+        Category.findByIdAndRemove(req.params.id, (err, category) => {
             if (err) return console.log(err);
             Category.find((err, categories) => {
                 if (err) {
-                    console.log(err); }
+                    console.log(err);
+                }
+                fs.rmdir('public/images/' + category.title, { recursive: true }, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
                 // } else {
                 //     req.index.locals.categories = categories;
                 // }
             });
             // req.flash('success', 'Category deleted!');
+
             res.redirect('/admin/categories/');
         });
     }

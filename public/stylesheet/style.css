@@ -252,3 +252,7 @@ button, button:focus {
   background-color: #c61a2a;
   color: white;
 }
+
+#imgPreview {
+  margin: 20px;
+}

@@ -1,4 +1,6 @@
 const express = require('express');
+const mkdirp = require('mkdirp');
+const fs = require('fs-extra');
 
 const router = express.Router();
 
@@ -26,6 +28,7 @@ module.exports = {
         var price = "";
         var inventoryNumber = "";
         var soldNumber = "";
+        var desc = "";
 
         Category.find((err, categories) => {
             res.render('admin/add_product', {
@@ -34,126 +37,126 @@ module.exports = {
                 price: price,
                 inventoryNumber: inventoryNumber,
                 soldNumber: soldNumber,
-                categories: categories
+                categories: categories,
+                desc: desc
             });
         });
     },
-    postCategory: async (req, res, next) => {
-        // req.checkBody('title', 'title must have a value').notEmpty();
+    postProduct: async (req, res, next) => {
+        if (!req.files) { imageFile = ""; }
+        if (req.files) {
+            imageFile = typeof (req.files.image) !== "undefined" ? req.files.image.name : "";
+        }
 
         var title = req.body.title;
-        var slug = title.replace(/\s+/g, '-').toLowerCase();
+        var branch = req.body.branch;
+        var price = req.body.price;
+        var inventoryNumber = req.body.inventoryNumber;
+        var soldNumber = req.body.soldNumber;
+        var desc = req.body.desc;
+        var category = req.body.category;
 
-        //var errors = req.validationErrors();
-
-        // if (errors) {
-        //     console.log('errors');
-        //     res.render('admin/add_category', {
-        //         errors: errors,
-        //         title: title
-        //     });
-        // } else {
-        Category.findOne({ slug: slug }, (err, category) => {
-            if (category) {
-                // req.flash('danger', 'Category slug exists, choose another');
-                res.render('admin/add_category', {
-                    title: title
-                });
-            } else {
-                var category = new Category({
+        Product.findOne({ title: title }, (err, product) => {
+            if (product) {
+                res.render('admin/add_product');
+            }
+            else {
+                var price2 = parseFloat(price).toFixed(2);
+                var product = new Product({
                     title: title,
-                    slug: slug
+                    branch: branch,
+                    price: price2,
+                    inventoryNumber: inventoryNumber,
+                    soldNumber: soldNumber,
+                    decription: desc,
+                    type: category,
+                    image: "/images/" + category + "/" + imageFile
                 });
-                category.save((err) => {
+                product.save((err) => {
                     if (err) return console.log(err);
-                    Category.find((err, categories) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            req.app.locals.categories = categories;
-                        }
-                    });
-                    // req.flash('Success', 'Category added!');
-                    res.redirect('/admin/categories');
+                    if (imageFile != "") {
+                        var productImage = req.files.image;
+                        var path = 'public/images/' + product.type + '/' + imageFile;
+
+                        productImage.mv(path, (err) => {
+                            return console.log(err);
+                        });
+                    }
+                    res.redirect('/admin/products');
                 });
             }
         });
-        // }
     },
 
-    editCategory: async (req, res, next) => {
-        let category = await Category.findById(req.params.id);
-        if (!category) { //if category not exist in db
-            return res.status(404).send('Category not found');
+    editProduct: async (req, res, next) => {
+        let categories = await Category.find();
+        let product = await Product.findById(req.params.id);
+        if (!product) { //if category not exist in db
+            return res.status(404).send('Product not found');
         }
-        res.render('admin/edit_category', { //category  exist
-            title: category.title,
-            id: category._id
+        res.render('admin/edit_product', { //category  exist
+            title: product.title,
+            branch: product.branch,
+            price: product.price,
+            inventoryNumber: product.inventoryNumber,
+            soldNumber: product.soldNumber,
+            desc: product.decription,
+            type: product.category,
+            id: product._id,
+            categories: categories,
+            category: product.type,
+            image: product.image
         });
-
-
-
-
     },
 
-    postEditCategory: async (req, res, next) => {
-        //req.checkBody('title', 'title must have a value').notEmpty();
+    postEditProduct: async (req, res, next) => {
+        if (!req.files) { imageFile = ""; }
+        if (req.files) {
+            imageFile = typeof (req.files.image) !== "undefined" ? req.files.image.name : "";
+        }
 
         var title = req.body.title;
-        var slug = title.replace(/\s+/g, '-').toLowerCase();
+        var branch = req.body.branch;
+        var price = req.body.price;
+        var inventoryNumber = req.body.inventoryNumber;
+        var soldNumber = req.body.soldNumber;
+        var desc = req.body.desc;
+        var category = req.body.category;
         var id = req.params.id;
 
-        // var errors = req.validationErrors();
-
-        // if (errors) {
-        //     // console.log('errors');
-        //     res.render('admin/edit_category', {
-        //         errors: errors,
-        //         title: title,
-        //         id: id
-        //     });
-        // } else {
-        Category.findOne({ slug: slug, _id: { '$ne': id } }, (err, category) => {
-            if (category) {
-                // req.flash('danger', 'Category title exists, choose another');
-                res.render('admin/edit_category', {
-                    title: title,
-                    id: id
-                });
-            } else {
-                Category.findById(id, (err, category) => {
-                    if (err) return console.log(err);
-                    category.title = title;
-                    category.slug = slug;
-                    category.save((err) => {
-                        if (err) return console.log(err);
-                        Category.find((err, categories) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                req.app.locals.categories = categories;
-                            }
-                        });
-                        // req.flash('success', 'Category added!');
-                        res.redirect('/admin/categories/edit-category/' + id);
-                    });
-                });
+        Product.findById({ _id: id }, (err, product) => {
+            if (err) {
+                console.log(err);
             }
-        });
-        //}
-    },
-    deleteCategory: async (req, res, next) => {
-        Category.findByIdAndRemove(req.params.id, (err) => {
-            if (err) return console.log(err);
-            Category.find((err, categories) => {
+            else {
+              product.title = title;
+              product.branch = branch;
+              product.price = parseFloat(price).toFixed(2);
+              product.inventoryNumber = inventoryNumber;
+              product.soldNumber = soldNumber;
+              product.decription = desc;
+              product.type = category;
+            }
+            product.save((err) => {
                 if (err) {
-                    console.log(err); }
-                // } else {
-                //     req.index.locals.categories = categories;
-                // }
+                    console.log(err);
+                }
+                res.redirect("/admin/products");
             });
-            // req.flash('success', 'Category deleted!');
-            res.redirect('/admin/categories/');
+        });
+    },
+    deleteProduct: async (req, res, next) => {
+        Product.findById(req.params.id, (err, product) => {
+            if (err) return console.log(err);
+            fs.remove('public' + product.image, (err) => {
+                if (err) console.log(err);
+            });
+        });
+        Product.findByIdAndRemove(req.params.id, (err) => {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/admin/products');
         });
     }
 }

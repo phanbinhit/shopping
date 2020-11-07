@@ -5,6 +5,8 @@ const ProductSchema = new Schema({
     type: {type: String, required: true},
     branch: {type: String, required: true},
     price: {type: Number, required: true},
+    inventoryNumber: {type: String, required: true},
+    soldNumber: {type: String, required: true},
     image: {type: String, required: true},
     decription: {type: String, required: true}
 });

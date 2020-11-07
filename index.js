@@ -3,6 +3,9 @@ const app = express();
 const PORT = 5000 | process.env.PORT;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+const expressValidator = require('express-validator');
+const path = require('path');
 
 //router
 const indexRouter = require('./routers/user/index.route');
@@ -25,9 +28,31 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //connect mongodb
-mongoose.connect('mongodb+srv://admin:admin@cluster0.abxfv.mongodb.net/shopping?retryWrites=true&w=majority', {useNewUrlParser: true,  useUnifiedTopology: true }, () => {
+mongoose.connect('mongodb+srv://admin:admin@cluster0.abxfv.mongodb.net/shopping?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('connect to mongo db');
 })
+
+// Express fileUpload middleware
+app.use(fileUpload());
+
+// Express Validator middleware
+app.use(expressValidator({
+    customValidators: {
+        isImage: (value, filename) => {
+            var extension = (path.extname(filename)).toLowerCase();
+            switch (extension) {
+                case '.jpg':
+                    return '.jpg';
+                case '.jpeg':
+                    return '.jpeg';
+                case '.png':
+                    return '.png';
+                default:
+                    return false;
+            }
+        }
+    }
+}));
 
 app.use(cartMiddleware);
 app.use('/', indexRouter);

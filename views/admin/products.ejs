@@ -34,12 +34,12 @@
           <td><%= pro.price%></td>
           <td><%= pro.type%></td>
           <td>
-            <a href="#">Edit</a>
+            <a href="/admin/products/edit-product/<%= pro._id%>">Edit</a>
           </td>
           <td>
             <a
               class="confirmDeletion"
-              href="#"
+              href="/admin/products/delete-product/<%= pro._id%>"
               >Delete</a
             >
           </td>
