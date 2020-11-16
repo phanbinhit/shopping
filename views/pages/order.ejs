@@ -22,18 +22,14 @@
                               <th>State</th>
                               <th>View</th>
                             </tr>
-                            <tr>
-                              <td>Order01</td>
-                              <td>10:30 16-07-2020</td>
-                              <td>Delivery</td>
-                              <td><a href="/order/detail">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>Order01</td>
-                                <td>10:30 16-07-2020</td>
-                                <td>Delivery</td>
-                                <td><a href="/order/detail">View</a></td>
-                              </tr>
+                            <% for (var i = 0; i < order.length;  i++) { %>
+                                <tr>
+                                    <td><%=order[i].name%></td>
+                                    <td><%=order[i].time%></td>
+                                    <td><%=order[i].state%></td>
+                                    <td><a href="/order/detail/<%=order[i].id%>">View</a></td>
+                                </tr> 
+                            <% } %>
                         </table>
                     </div> 
                 </div>

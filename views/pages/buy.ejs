@@ -17,22 +17,22 @@
                   <div class="card card-signin my-5 card-login">
                     <div class="card-body">
                       <h5 class="card-title text-center">Nhập thông tin</h5>
-                      <form class="form-signin" action="/auth/login" method="post">
+                      <form class="form-signin" action="/cart/postOrder" method="post">
                         <div class="form-label-group font-size-20">
                           <label for="">Họ tên: </label>
-                          <input type="text" idcircle="inputHoten" class="form-control" name="hoten" placeholder="Nhập họ tên" required autofocus>
+                          <input type="text" idcircle="inputHoten" class="form-control" name="name" placeholder="Nhập họ tên" required autofocus>
                         </div>
                         <div class="form-label-group font-size-20">
                           <label for="">Địa chỉ: </label>
-                          <input type="text" idcircle="inputDiachi" class="form-control" name="diachi" placeholder="Nhập địa chỉ" required autofocus>
+                          <input type="text" idcircle="inputDiachi" class="form-control" name="address" placeholder="Nhập địa chỉ" required autofocus>
                         </div>
                         <div class="form-label-group font-size-20">
                           <label for="">Số điện thoại: </label>
-                          <input type="text" idcircle="inputSDT" class="form-control" name="sodienthoai" placeholder="Nhập số điện thoại" required autofocus>
+                          <input type="text" idcircle="inputSDT" class="form-control" name="phone" placeholder="Nhập số điện thoại" required autofocus>
                         </div>
                         <div class="form-label-group font-size-20">
                           <label for="">Phương thức thanh toán: </label>
-                          <select name="" id="">
+                          <select name="method" id="">
                               <option value="Visa">Visa</option>
                               <option value="Bank">Bank</option>
                           </select>

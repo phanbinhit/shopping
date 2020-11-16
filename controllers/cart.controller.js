@@ -1,5 +1,7 @@
 const User = require('../models/user.model');
 const Product = require('../models/product.model');
+const mongoose = require('mongoose');
+const Order = require('../models/order.model');
 
 module.exports = {
     cart: async (req, res, next) => {
@@ -16,7 +18,6 @@ module.exports = {
             products: products,
             cart: cart
         });
-
     },
     addCart: async (req, res, next) => {
         let data = req.query.product;
@@ -78,9 +79,44 @@ module.exports = {
     },
 
     buyCart: async (req, res, next) => {
-        
-
         res.render('pages/buy');
+    },
 
+    postOrder: async (req, res, next) => {
+        let data = req.body;
+        let user = await User.findById("5f9247eb873dd289ba2b9b32");
+        let cart = user.cart;
+        let order = user.order;
+        let dataOrder = {
+            id: mongoose.Types.ObjectId(),
+            state: "Delivery",
+            time: getCurrentTime(),
+            method: data.method,
+            address: data.address,
+            name: data.name,
+            phone: data.phone,
+            data: cart
+        };
+        console.log(dataOrder);
+        Order.updateOne(
+            {"id_user": "5f9247eb873dd289ba2b9b32"},
+            {"$push": {"data": dataOrder}},
+            (err, docs) => {
+                if (err) throw err;
+            }
+        );
+        User.updateOne(
+            {"_id": "5f9247eb873dd289ba2b9b32"},
+            {"$set": {"cart": []}},
+            (err, docs) => {
+                if (err) throw err;
+            }
+        );
+        res.redirect('/order');
     }
+}
+
+function getCurrentTime() {
+    let date = new Date();
+    return date.toLocaleTimeString() + " " + date.toLocaleDateString();
 }
