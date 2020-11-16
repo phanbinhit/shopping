@@ -5,8 +5,7 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     fullname: {type: String, required: true},
     role: {type: String, required: true},
-    cart: {type: Array, required: true},
-    order: {type: Array, required: true}
+    cart: {type: Array, required: false},
 });
 
 module.exports = mongoose.model('User', UserSchema, 'user');

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/phanbinhit/shopping#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
@@ -26,6 +27,7 @@
     "express-validator": "^5.3.0",
     "fs-extra": "^9.0.1",
     "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
     "mkdirp": "^1.0.4",
     "mongoose": "^5.10.9",
     "path": "^0.12.7"
