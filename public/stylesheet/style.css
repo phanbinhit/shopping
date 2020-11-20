@@ -154,6 +154,9 @@ button, button:focus {
 
 #main {
   margin-top: 7%;
+  margin-bottom: 5%;
+  height: 100%;
+  min-height: 500px;
 }
 
 .logo {

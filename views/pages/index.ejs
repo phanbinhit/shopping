@@ -68,10 +68,9 @@
                 <h4 class="font-rubik font-size-20">All Product</h4>
                 <div id="filters" class="button-group text-right">
                     <button class="btn is-checked" data-filter="*">All Brand</button>
-                    <button class="btn" data-filter=".dress">Dress</button>
-                    <button class="btn" data-filter=".bikini">Bikini</button>
-                    <button class="btn" data-filter=".jeans">Jeans</button>
-                    <button class="btn" data-filter=".trainer">Trainer</button>
+                    <% for (var i = 0; i < catelogy.length;  i++) { %>
+                     <button class="btn" data-filter=".<%=catelogy[i].slug%>"><%=catelogy[i].title%></button>
+                    <% } %>
                 </div>
 
                 <div class="grid">
