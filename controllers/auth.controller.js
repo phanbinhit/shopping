@@ -27,27 +27,43 @@ module.exports = {
         res.render('pages/register');
     },
     postRegister: async (req, res, next) => {
-        bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
-            if (err) {
-                res.json({
-                    error: err
-                });
-            }
-
-            let user = new User({
-                fullname: req.body.name,
-                email: req.body.email,
-                password: hashedPass,
-                role: "user"
-            });
-            user.save().then(user => {
-                res.redirect('/auth/login');
-            })
-                .catch(error => {
-                    res.json({
-                        message: 'An error occured'
-                    });
-                })
+        let email = req.body.email;
+        let pass = req.body.password
+        let user = await User.findOne({
+            "email": email
         });
+        if (user != null) {
+            res.send("false");
+            return;
+        }
+        else {
+            bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
+                if (err) {
+                    res.json({
+                        error: err
+                    });
+                }
+    
+                let user = new User({
+                    fullname: req.body.name,
+                    email: req.body.email,
+                    password: hashedPass,
+                    role: "user"
+                });
+                user.save().then(user => {
+                    res.send("true");
+                    return;
+                })
+                    .catch(error => {
+                        res.json({
+                            message: 'An error occured'
+                        });
+                    })
+                
+            });
+            
+        }
+        
+        
     }
 }

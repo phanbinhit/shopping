@@ -7,6 +7,11 @@
     <header id="header-auth">
         <%- include ("../partials/header-auth") %>
     </header>
+    <div class="toast ">
+        <div class="toast-body">
+            <span id="result-register">Some text inside the toast body</span>
+        </div>
+    </div>
     <main id="main-register">
         <div class="container">
             <div class="row">
@@ -18,7 +23,7 @@
                         <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Register</h5>
-                            <form class="form-signin" action="/auth/register" method="post">
+                            <form class="form-signin" >
                             <div class="form-label-group">
                                 <label for="inputEmail">Email address</label>
                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
@@ -36,7 +41,7 @@
                                 <label for="inputPasswordComfirm">Corfirm Password</label>
                                 <input type="password" id="inputPasswordComfirm" class="form-control" name="confirm" placeholder="Password Corfirm" required>
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" style="margin-top: 20px">Register</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase check-valid-input" type="button" style="margin-top: 20px">Register</button>
                             <hr class="my-4">
                             </form>
                         </div>
@@ -51,7 +56,61 @@
     </footer>
     <%- include("../partials/script") %>
     <script>
+        $(".check-valid-input").click(function (e) {
+            e.preventDefault();
+            let emailVal = $("#inputEmail").val();
+            let nameVal = $("#inputName").val();
+            let passVal = $("#inputPassword").val();
+            let confirmPassVal = $("#inputPasswordComfirm").val();
+            if (emailVal == "") {
+                $('#result-register').html('ERROR: Email not null!')
+                $('.toast').toast('show');
+                return 
+            }
+            if (nameVal == "") {
+                $('#result-register').html('ERROR: Name not null!')
+                $('.toast').toast('show');
+                return 
+            }
+            if (passVal == "") {
+                $('#result-register').html('ERROR: Password not null!')
+                $('.toast').toast('show');
+                return 
+            }
+            if (confirmPassVal == "") {
+                $('#result-register').html('ERROR: Confirm password not null!')
+                $('.toast').toast('show');
+                return 
+            }
+            if (confirmPassVal != passVal) {
+                $('#result-register').html('ERROR: Confirm password not same password!')
+                $('.toast').toast('show');
+                return 
+            }
+            $.ajax({
+                type: 'POST',
+                data: {
+                    email: emailVal,
+                    name: nameVal,
+                    password: passVal
+                },
+                url: '/auth/register',
+                success: () => {
+                    console.log("register" + emailVal);
+                }
+            }).done(function (data) {
+                console.log(data);
+                if (data == "false") {
+                    $('#result-register').html('ERROR: Email exist!')
+                    $('.toast').toast('show');
+                }
+                else {
+                    console.log("asdasd");
+                    window.location.href = '/auth/login';
+                }
 
+            });
+        });
     </script>
 </body>
 </html>
