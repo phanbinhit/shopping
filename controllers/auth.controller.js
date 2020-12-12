@@ -7,21 +7,30 @@ module.exports = {
         res.render('pages/login');
     },
     postLogin: async (req, res, next) => {
-        let data = req.body;
-        let email = data.email;
-        let password = data.password;
-        let user = await User.findOne({
-            "email": email,
-            "password": password
+        var email = req.body.email;
+        var password = req.body.password;
+
+        User.find({email:email}, (err, user) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (!user) {
+                    res.render('pages/login');
+                }
+
+                bcrypt.compare(password, user.password, (err, isMatch) => {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    if (!isMatch) {
+                        res.render('pages/login');
+                    } else {
+                        res.redirect('/index')
+                    }
+                });
+            }
         });
-        if (user) {
-            res.cookie('email', email, { signed: true });
-            console.log('Signed Cookies: ', req.signedCookies);
-            res.redirect('/');
-        } else {
-            console.log('Cookies: ', req.cookies);
-            res.redirect('/auth/login');
-        }
     },
     register: async (req, res, next) => {
         res.render('pages/register');
