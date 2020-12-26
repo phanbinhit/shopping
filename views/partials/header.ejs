@@ -1,46 +1,73 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="/" class="navbar-brand  logo-header">
-      <img src="/images/logo/1.png" class="" alt="">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link font-size-16" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <div class="my-2 my-lg-0 nav-bar-left">
-        <li class="nav-item">
-          <form class="form-inline form-search">
-            <input class="form-control mr-sm-2 input-search" placeholder="Search">
-            <button class="btn my-2 my-sm-0 btn-search" type="submit"><i class="fa fa-search font-size-20" aria-hidden="true"></i></button>
-          </form>
-        </li>
-        <li class="nav-item con-cart">
-          <a id="cart" href="/cart" class="py-1 rounded-pill color-primary-bg">
-            <span class="font-size-16 px-2 text-white"><i class="fa fa-cart-plus font-size-20"></i></span>
-            <span class="px-3 py-1 rounded-pill text-dark bg-light" id="number-of-cart"><%=number%></span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark font-size-16" href="/auth/login">Login</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle font-size-16 text-dark font-size-16" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user font-size-20 color-primary-bg" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-user" aria-labelledby="navbarDropdown">
-            <div class="dropdown-item">
-              <span class="font-size-14" href=""><%=user.fullname%></span>
-            </div>
-            <div class="dropdown-item">
-              <a class="font-size-14 text-dark" href="/order">My Order</a>
-            </div>
-            <div class="dropdown-item">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              <a class="font-size-14 text-dark" href="#">Log out</a>
-            </div>
+  <a href="/" class="navbar-brand logo-header">
+    <img src="/images/logo/1.png" class="" alt="" />
+  </a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link font-size-16" href="/"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0 nav-bar-left">
+      <li class="nav-item">
+        <form class="form-inline form-search">
+          <input
+            class="form-control mr-sm-2 input-search"
+            placeholder="Search"
+          />
+          <button class="btn my-2 my-sm-0 btn-search" type="submit">
+            <i class="fa fa-search font-size-20" aria-hidden="true"></i>
+          </button>
+        </form>
+      </li>
+      <li class="nav-item con-cart">
+        <a id="cart" href="/cart" class="py-1 rounded-pill color-primary-bg">
+          <span class="font-size-16 px-2 text-white"
+            ><i class="fa fa-cart-plus font-size-20"></i
+          ></span>
+          <span
+            class="px-3 py-1 rounded-pill text-dark bg-light"
+            id="number-of-cart"
+            ><%=number%></span
+          >
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark font-size-16" href="/auth/login">Login</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle font-size-16 text-dark font-size-16"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i
+            class="fa fa-user font-size-20 color-primary-bg"
+            aria-hidden="true"
+          ></i>
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-user"
+          aria-labelledby="navbarDropdown"
+        >
+          <div class="dropdown-item">
+            <span class="font-size-14" href=""><%=user.fullname%></span>
           </div>
-        </li>
-      </div>
+          <div class="dropdown-item">
+            <a class="font-size-14 text-dark" href="/order">My Order</a>
+          </div>
+          <div class="dropdown-item">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <a class="font-size-14 text-dark" href="/auth/logout">Log out</a>
+          </div>
+        </div>
+      </li>
     </div>
-  </nav>
+  </div>
+</nav>

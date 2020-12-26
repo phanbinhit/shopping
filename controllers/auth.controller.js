@@ -5,6 +5,10 @@ const express = require('express');
 const app = express();
 
 module.exports = {
+    logout: (req, res) => {
+        res.clearCookie("userId");
+        res.redirect('/');
+    },
     login: async (req, res, next) => {
         res.render('pages/login');
     },
@@ -23,9 +27,9 @@ module.exports = {
                 }
                 bcrypt.compare(password, user.password, function (err, result) {
                     if (result === true) {
-                        res.cookie('userId', user._id, {signed: true});
+                        res.cookie('userId', user._id, { signed: true });
                         // res.locals.user = user
-                        
+
                         return res.redirect('/');
                     } else {
                         return console.log('Error');
