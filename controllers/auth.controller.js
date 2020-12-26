@@ -6,31 +6,29 @@ module.exports = {
     login: async (req, res, next) => {
         res.render('pages/login');
     },
-    postLogin: async (req, res, next) => {
-        var email = req.body.email;
-        var password = req.body.password;
+    postLogin: (req, res, next) => {
+        const email = req.body.email;
+        const password = req.body.password;
 
-        User.find({email:email}, (err, user) => {
-            if (err) {
-                console.log(err);
-            } else {
-                if (!user) {
-                    res.render('pages/login');
+        User.findOne({ email: email })
+            .exec(function (err, user) {
+                if (err) {
+                    return callback(err)
+                } else if (!user) {
+                    var err = new Error('User not found.');
+                    err.status = 401;
+                    return callback(err);
                 }
-
-                bcrypt.compare(password, user.password, (err, isMatch) => {
-                    if (err) {
-                        console.log(err);
-                    }
-
-                    if (!isMatch) {
-                        res.render('pages/login');
+                bcrypt.compare(password, user.password, function (err, result) {
+                    if (result === true) {
+                        // s
+                        return res.redirect('/');
                     } else {
-                        res.redirect('/index')
+                        return console.log('Error');
                     }
-                });
-            }
-        });
+                })
+            });
+
     },
     register: async (req, res, next) => {
         res.render('pages/register');
@@ -52,7 +50,7 @@ module.exports = {
                         error: err
                     });
                 }
-    
+
                 let user = new User({
                     fullname: req.body.name,
                     email: req.body.email,
@@ -68,11 +66,11 @@ module.exports = {
                             message: 'An error occured'
                         });
                     })
-                
+
             });
-            
+
         }
-        
-        
+
+
     }
 }

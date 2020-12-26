@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const PORT = 5000 | process.env.PORT;
+const PORT = 5001 | process.env.PORT;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const expressValidator = require('express-validator');
+const session = require('express-session')
 const path = require('path');
 
 //router
@@ -52,6 +53,13 @@ app.use(expressValidator({
             }
         }
     }
+}));
+
+//use sessions for tracking logins
+app.use(session({
+    secret: 'long ho',
+    resave: true,
+    saveUninitialized: false
 }));
 
 app.use(cartMiddleware);
