@@ -6,6 +6,10 @@ const express = require('express');
 const app = express();
 
 module.exports = {
+    logout: (req, res) => {
+        res.clearCookie("userId");
+        res.redirect('/');
+    },
     login: async (req, res, next) => {
         if (req.signedCookies.userId) {
             res.redirect('/');
