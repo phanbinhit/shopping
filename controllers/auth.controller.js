@@ -1,6 +1,8 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const express = require('express');
+const app = express();
 
 module.exports = {
     login: async (req, res, next) => {
@@ -21,7 +23,9 @@ module.exports = {
                 }
                 bcrypt.compare(password, user.password, function (err, result) {
                     if (result === true) {
-                        // s
+                        res.cookie('userId', user._id, {signed: true});
+                        // res.locals.user = user
+                        
                         return res.redirect('/');
                     } else {
                         return console.log('Error');

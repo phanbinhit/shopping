@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const expressValidator = require('express-validator');
-const session = require('express-session')
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
@@ -28,12 +27,11 @@ app.set('views', './views');
 
 //set static folder
 app.use(express.static('public'));
-app.use(cookieParser("dadsa"));
+app.use(cookieParser('123'));
 
 //check session
 // app.all('/', sessionMiddelware);
 
-app.use(cartMiddleware);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //connect mongodb
@@ -63,20 +61,13 @@ app.use(expressValidator({
     }
 }));
 
-//use sessions for tracking logins
-app.use(session({
-    secret: 'long ho',
-    resave: true,
-    saveUninitialized: false
-}));
-
-app.all('/', sessionMiddelware, indexRouter);
-app.all('/product', sessionMiddelware, productRouter);
-app.all('/cart', sessionMiddelware,cartRouter);
+app.all('/', sessionMiddelware, cartMiddleware, indexRouter);
+app.use('/product', sessionMiddelware, cartMiddleware, productRouter);
+app.use('/cart', sessionMiddelware, cartMiddleware, cartRouter);
 app.use('/auth', authRouter);
-app.all('/admin/categories',sessionMiddelware, adminCategories);
-app.all('/admin/products', sessionMiddelware,adminProducts);
-app.all('/order', sessionMiddelware, orderRouter);
+app.use('/admin/categories',sessionMiddelware, adminCategories);
+app.use('/admin/products', sessionMiddelware,adminProducts);
+app.use('/order', sessionMiddelware, cartMiddleware, orderRouter);
 
 app.listen(PORT, () => {
     console.log('Server listening on port:' + PORT);

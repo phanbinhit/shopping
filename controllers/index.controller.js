@@ -4,7 +4,7 @@ const Category = require('../models/category.model');
 
 module.exports = {
     index: async (req, res, next) => {
-        let user = await User.findById("5fe6d6dc2040797fac54da43");
+        let user = await User.findById(req.signedCookies.userId);
         let number = user.cart.length;
         let catelogy = await Category.find();
         

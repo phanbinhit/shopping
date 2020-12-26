@@ -5,7 +5,7 @@ const Order = require('../models/order.model');
 
 module.exports = {
     cart: async (req, res, next) => {
-        let users = await User.findById("5fe6d6dc2040797fac54da43");
+        let users = await User.findById(req.signedCookies.userId);
         let cart = users.cart;
         let products = [];
 
@@ -21,7 +21,7 @@ module.exports = {
     },
     addCart: async (req, res, next) => {
         let data = req.query.product;
-        let users = await User.findById("5fe6d6dc2040797fac54da43");
+        let users = await User.findById(req.signedCookies.userId);
         let cart = users.cart;
         
         let ids = cart.map((item) => {
@@ -33,7 +33,7 @@ module.exports = {
             User.updateOne(
                 {
                     // id can sua
-                    "_id": "5fe6d6dc2040797fac54da43"
+                    "_id": req.signedCookies.userId
                 },
                 {
                     // xu ly trung cua number
@@ -53,7 +53,7 @@ module.exports = {
     postEditCart: async (req, res, next) => {
         let data = req.body.product;
         User.updateOne(
-            {"_id": "5fe6d6dc2040797fac54da43", "cart.id": data.id},
+            {"_id": req.signedCookies.userId, "cart.id": data.id},
             { "$set": { "cart.$.number": data.number } },
             function(err, docs) {
                 if (err) throw err;
@@ -65,7 +65,7 @@ module.exports = {
         let data = req.body.product;
         let isSuccess = true;
         User.updateOne(
-            {"_id": "5fe6d6dc2040797fac54da43", "cart.id": data.id},
+            {"_id": req.signedCookies.userId, "cart.id": data.id},
             { "$pull": { "cart": data } },
             function(err, docs) {
                 if (err) throw err;
@@ -84,7 +84,7 @@ module.exports = {
 
     postOrder: async (req, res, next) => {
         let data = req.body;
-        let user = await User.findById("5fe6d6dc2040797fac54da43");
+        let user = await User.findById(req.signedCookies.userId);
         let cart = user.cart;
         let order = user.order;
         let dataOrder = {
@@ -99,14 +99,14 @@ module.exports = {
         };
         console.log(dataOrder);
         Order.updateOne(
-            {"id_user": "5fe6d6dc2040797fac54da43"},
+            {"id_user": req.signedCookies.userId},
             {"$push": {"data": dataOrder}},
             (err, docs) => {
                 if (err) throw err;
             }
         );
         User.updateOne(
-            {"_id": "5fe6d6dc2040797fac54da43"},
+            {"_id": req.signedCookies.userId},
             {"$set": {"cart": []}},
             (err, docs) => {
                 if (err) throw err;

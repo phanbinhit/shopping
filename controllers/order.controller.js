@@ -4,12 +4,12 @@ const Order = require('../models/order.model');
 
 module.exports = {
     index: async (req, res, next) => {
-        let order = await Order.findOne({"id_user": "5fe6d6dc2040797fac54da43"});
+        let order = await Order.findOne({"id_user": req.signedCookies.userId});
         let data = order.data;
         res.render('pages/order', {order: data});
     },
     detail: async (req, res, next) => {
-        let order = await Order.findOne({"id_user": "5fe6d6dc2040797fac54da43"});
+        let order = await Order.findOne({"id_user": req.signedCookies.userId});
         let dataDb = order.data;
         let products = [];
         let data = [];
