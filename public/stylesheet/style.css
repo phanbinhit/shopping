@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway:wght@100&family=Rubik:wght@300&display=swap");
 /*gobal classes*/
-button, button:focus {
+button,
+button:focus {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -44,73 +45,73 @@ button, button:focus {
 }
 
 .color-second {
-  color: #00A5C4;
+  color: #00a5c4;
 }
 
 .color-second-bg {
-  background: #00A5C4;
+  background: #00a5c4;
 }
 
 .color-yellow {
-  color: #FFD289;
+  color: #ffd289;
 }
 
 .color-yellow-bg {
-  background: #FFD289;
+  background: #ffd289;
 }
 
 /* Top sale */
 
-  .owl-carousel .item a{
-    overflow: hidden;
-  }
-
-  .owl-carousel .item .product img {
-    transition: transform .5s ease;
-  }
-
-  .owl-carousel .item .product a:hover img {
-    transform: scale(1.1);
-  }
-
-  #top-sale .owl-carousel .owl-nav button {
-    position: absolute;
-    top: 30%;
-    background: transparent;
-  }
-  
-  #top-sale .owl-carousel .owl-nav button.owl-prev {
-    left: 0;
-  }
-
-  #top-sale .owl-carousel .owl-nav button.owl-next {
-    right: 0;
-  }
-
-  #top-sale .owl-carousel .owl-nav button.owl-prev,
-  #top-sale .owl-carousel .owl-nav button.owl-next {
-    font-size: 35px;
-    color: #003859;
-    padding: 0 1rem;
-  }
-
-  #top-sale .owl-carousel .owl-nav button.owl-prev {
-    margin-left: -3rem;
-  }
-
-  #top-sale .owl-carousel .owl-nav button.owl-next {
-    margin-right: -3rem;
-  }
-
-
-  #special-price .grid-item {
-    margin-right: 1.2rem;
-    margin-top: 1rem;
+.owl-carousel .item a {
+  overflow: hidden;
 }
 
-  #new-phones, .owl-carousel{
-    background: #ffffff;
-  }
+.owl-carousel .item .product img {
+  transition: transform 0.5s ease;
+}
+
+.owl-carousel .item .product a:hover img {
+  transform: scale(1.1);
+}
+
+#top-sale .owl-carousel .owl-nav button {
+  position: absolute;
+  top: 30%;
+  background: transparent;
+}
+
+#top-sale .owl-carousel .owl-nav button.owl-prev {
+  left: 0;
+}
+
+#top-sale .owl-carousel .owl-nav button.owl-next {
+  right: 0;
+}
+
+#top-sale .owl-carousel .owl-nav button.owl-prev,
+#top-sale .owl-carousel .owl-nav button.owl-next {
+  font-size: 35px;
+  color: #003859;
+  padding: 0 1rem;
+}
+
+#top-sale .owl-carousel .owl-nav button.owl-prev {
+  margin-left: -3rem;
+}
+
+#top-sale .owl-carousel .owl-nav button.owl-next {
+  margin-right: -3rem;
+}
+
+#special-price .grid-item {
+  margin-right: 1.2rem;
+  margin-top: 1rem;
+}
+
+#new-phones,
+.owl-carousel {
+  background: #ffffff;
+}
 /*# sourceMappingURL=style.css.map */
 
 .product img {
@@ -164,7 +165,7 @@ button, button:focus {
   top: 10%;
 }
 
-.logo-header img{
+.logo-header img {
   width: 50%;
 }
 
@@ -172,7 +173,7 @@ button, button:focus {
   cursor: pointer;
 }
 
-.nav-bar-left li{
+.nav-bar-left li {
   display: inline-flex;
 }
 
@@ -239,14 +240,19 @@ button, button:focus {
   width: 100%;
 }
 
-.orders td, .orders th {
+.orders td,
+.orders th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.orders tr:nth-child(even){background-color: #f2f2f2;}
+.orders tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-.orders tr:hover {background-color: #ddd;}
+.orders tr:hover {
+  background-color: #ddd;
+}
 
 .orders th {
   padding-top: 12px;
