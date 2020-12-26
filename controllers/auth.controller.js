@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const Order = require('../models/order.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express');
@@ -10,6 +11,10 @@ module.exports = {
         res.redirect('/');
     },
     login: async (req, res, next) => {
+        if (req.signedCookies.userId) {
+            res.redirect('/');
+            return
+        } 
         res.render('pages/login');
     },
     postLogin: (req, res, next) => {
@@ -68,7 +73,20 @@ module.exports = {
                     role: "user"
                 });
                 user.save().then(user => {
-                    res.send("true");
+                    
+                    let order = new Order({
+                        id_user: user.id,
+                        data: []
+                    });
+                    order.save().then(order => {
+                        res.send("true");
+                        return;
+                    })
+                        .catch(error => {
+                            res.json({
+                                message: 'An error occured'
+                            });
+                        })
                     return;
                 })
                     .catch(error => {
@@ -76,6 +94,9 @@ module.exports = {
                             message: 'An error occured'
                         });
                     })
+
+                
+
 
             });
 
